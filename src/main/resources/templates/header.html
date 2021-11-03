@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml" xmlns:sec="http://www.w3.org/1999/xhtml">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <!--    <link rel="stylesheet" href="style.css">-->
+  <link
+          rel="stylesheet"
+          type="text/css"
+          th:href="@{~/styles/style.css}"
+  />
+</head>
+
+<body>
+
+<header>
+  <!--    <nav th:if="${username}">-->
+  <nav sec:authorize="isAuthenticated()">
+    <ul>
+      <li><a href="/">Home</a></li>
+<!--      <li> <a href="/Profile">See Your Profile</a></li>-->
+      <li><a href="/perform_logout">Logout</a></li>
+      <li><a href="/profile">profile</a></li>
+      <div th:text="${#authentication.name}">
+      </div>
+    </ul>
+
+  </nav>
+  <!--    <nav th:unless="${username}">-->
+
+  <link
+          rel="stylesheet"
+          type="text/css"
+          th:href="@{~/styles/style.css}"
+  />
+  <nav sec:authorize="isAnonymous()" >
+    <ul>
+      <li><a href="/">Home</a></li>
+      <li><a href="/login">login</a></li>
+      <li><a href="/signup">signup</a></li>
+
+    </ul>
+
+
+  </nav>
+</header>
