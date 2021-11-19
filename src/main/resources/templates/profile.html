@@ -1,34 +1,45 @@
-<!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<!doctype html>
+<html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <link rel="stylesheet" href="/styles/reset.css" />
+    <link rel="stylesheet" href="/styles/style.css" />
+    <link rel="stylesheet" href="/styles/profile.css" />
+
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script
+            src="https://kit.fontawesome.com/eac52206dc.js"
+            crossorigin="anonymous"
+    ></script>
+    <title>CodeFellowShip / profile</title>
 </head>
 <body>
+<div th:insert="fragments/nav :: nav"></div>
 
-    <header th:insert="header.html :: header">
-    <h2 th:text="${usernamePrincipal}"></h2>
-</header>
-<div class="main">
-    <div class="object">
-        <h3>User Name</h3>
-        <p th:text="${profile.username}"></p>
-        <h3>Full Name</h3>
-        <p th:text="${profile.firstName} + ' '+${profile.lastName}"></p>
-        <h3>Date of birth</h3>
-        <p th:text="${profile.dateOfBirth}"></p>
-        <h3>bio</h3>
-        <p th:text="${profile.bio}"></p>
-        <form action="/profile" method="post">
-            <input type="text" name="body" id="body"><br>
-            <button type="submit">Add Post</button>
-        </form>
+
+<div id="pro">
+    <img src="https://i.pinimg.com/originals/0c/3b/3a/0c3b3adb1a7530892e55ef36d3be6cb8.png">
+    <div id="stuff">
+    <span> Username: <span sec:authentication="name"> </span> </span><br>
+    <span> First name:  <span th:text="${user.firstName}"></span> </span><br>
+    <span> Last name:  <span th:text="${user.lastName}"></span> </span><br>
+    <span> Bio:  <span th:text="${user.bio}"></span> </span><br>
+    <span> Birth date:  <span th:text="${user.dateOfBirth}"></span> </span><br>
     </div>
-    <div class="objectTow" th:each="onepost:${profile.allposts}">
-        <h2 th:text="${onepost.id}"></h2>
-        <h2 th:text="${onepost.body}"></h2>
-        <h2 th:text="${onepost.createdAt}"></h2>
+    <div>
+    <h2>Posts</h2>
+    <ul>
+        <li th:each="post : ${user.posts}" th:text="${post.body}"></li>
+    </ul>
     </div>
-</div>
+    
+  </div>
+
+<a href="/index">Home</a>
+
+
+    <footer>All Rights Reserved 	&copy; </footer>
 </body>
 </html>

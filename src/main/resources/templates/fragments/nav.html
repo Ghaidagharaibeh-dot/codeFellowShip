@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="base :: baseHeader(~{::title},~{::link})">
+
+    <link rel="stylesheet" href="/static/styles/reset.css" />
+    <link rel="stylesheet" href="/static/styles/style.css" />
+
+    <script
+            src="https://kit.fontawesome.com/eac52206dc.js"
+            crossorigin="anonymous"
+    ></script>
+</head>
+<body>
+<nav th:fragment="nav">
+
+    <a href="/index"><h1>CodeFellowShip <i class="fas fa-code"></i></h1></a>
+
+    <div class="se">
+
+            <div class="button-group" sec:authorize="!isFullyAuthenticated()">
+                <a href="/login">Login</a>
+                <a href="/signup">Sign up</a>
+            </div>
+            <div class="button-group" sec:authorize="isFullyAuthenticated()">
+                <span>Welcome <span sec:authentication="name"></span></span>
+
+                 <a href="/profile">Profile</a>
+                <a href="/feed">Feeds</a>
+                  <a href="/perform_logout">Logout</a>
+            </div>
+    </div>
+<!--            <li sec:authorize="isAnonymous()"><a class="nav-link" href="/login">Login</a></li>-->
+<!--            <li sec:authorize="isAuthenticated()">Wellcome, <span sec:authentication="name"></span>!</li>-->
+<!--            <li sec:authorize="isAuthenticated()"> <a th:href="${'/profile/'+ username}">Profile</a></li>-->
+<!--            <li sec:authorize="isAuthenticated()"><a class="nav-link" href="/perform_logout">Logout</a></li>-->
+
+</nav>
+</body>
+</html>
